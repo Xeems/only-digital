@@ -38,6 +38,18 @@ module.exports = {
           "css-loader"
         ]
       },
+      {
+        test: /\.svg$/i,
+        oneOf: [
+          {
+            issuer: /\.[jt]sx?$/,
+            use: ['@svgr/webpack'], 
+          },
+          {
+            type: 'asset/resource', 
+          },
+        ],
+      }
     ]
   },
 
