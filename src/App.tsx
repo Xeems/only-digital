@@ -1,10 +1,8 @@
-import React from "react"
+import Timeline from "./components/TimeLine"
+import { timelineData } from "./lib/timelineData"
 
 export default function App() {
   return (
-    <div>
-      <h1>React + Webpack + TS + gusp
-      </h1>
-    </div>
+      <Timeline data={timelineData} />
   )
 }

@@ -6,6 +6,7 @@ body,
 #root {
   height: 100vh;
   overflow: hidden;
+
 }
 
 body {
@@ -14,26 +15,29 @@ body {
   font-family: sans-serif;
 }
 
-hr {
-  position: absolute;
-  margin: 0;
+hr{
   border: none;
+  margin: 0px;
 
   &.horizontal {
-    top: 40%;
-    left:0%;
-    height: 1px;
-    width: auto;
-    background: #e3e6ed;
-  }
+  position: absolute;
+  top: 40%;
+  left:0%;
+  height: 1px;
+  width: 100%;
+  background: #e3e6ed;
+}
 
   &.vertical {
-    top:50%;
+    position: absolute;
+    top:0%;
     left: 50%;
     height: 100%;
+    width: 1px;
     background: #e3e6ed;
   }
 }
+
 
 button {
   transition: 0.3s;
@@ -50,7 +54,28 @@ button:hover{
   background-color: white;
 }
 
+.header_container{
+  position: absolute;
+  top:10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap:60px;
+
+  h1{
+    color: #42567A;
+    font-size: 56px;
+  }
+}
+
+.gradient{
+  height: 120px;
+  width: 4px;
+  background: linear-gradient(to bottom, #5D5FEF, #EF5DA8);
+}
+
 .timeline {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -107,6 +132,17 @@ button:hover{
   border: 1px solid #e3e6ed;
 }
 
+.period_label{
+  position: absolute;
+  top: 20%;
+  left: 120%;
+
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #42567A;
+}
+
 .timeline-dot {
   position: absolute;
   top: 50%;
@@ -150,33 +186,11 @@ button:hover{
   }
 }
 
-.timeline_slider{
-  min-width: 0;
-}
-
-.event {
-  height: 135px;
-
-  h3 {
-    margin-bottom: 10px;
-    color: #3877EE;
-    font-size: 25px;
-    font-weight: 400;
-    font-family: "Bebas Neue", sans-serif;
-    }
-
-  p{
-    font-family: "PT Sans", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    color: #42567A;
-  }
-}
-
-.timline_slider_navigation{
+.timeline_periods_navigation{
   display: flex;
-  margin: 0px 60px;
-  gap: 20px;
+  flex-direction: column;
+  margin: 0px 80px;
+  gap:20px;
 
   button {
     border-radius: 100%;
@@ -185,10 +199,28 @@ button:hover{
     background-color: transparent;
     min-width: 50px;
     min-height: 50px;
-
-    
   }
 
+  button:disabled{
+    opacity: 0.5;
+  }
+
+  div {
+    display: flex;
+    flex-direction: row;
+    gap:20px
+  }
+}
+
+.timeline_periods_count{
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "PT Sans", sans-serif;
+  color: #42567A;
+}
+
+.timeline_slider{
+  min-width: 0;
 }
 
 .swiper_container{
@@ -215,17 +247,31 @@ button:hover{
     }
 }
 
-.slides_count{
-  font-size: 14px;
-  font-weight: 400;
-  font-family: "PT Sans", sans-serif;
-  color: #42567A;
+.swiper{
+  width: 100%;
 }
 
-.navigation_slider_container{
-  z-index: 10;
-  max-width: 100%;
+.event {
+  height: 135px;
+
+  h3 {
+    margin-bottom: 10px;
+    color: #3877EE;
+    font-size: 25px;
+    font-weight: 400;
+    font-family: "Bebas Neue", sans-serif;
+    }
+
+  p{
+    font-family: "PT Sans", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #42567A;
+  }
 }
+
+
+
 
 
 

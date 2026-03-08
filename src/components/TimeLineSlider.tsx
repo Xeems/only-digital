@@ -20,20 +20,26 @@ export default function TimelineSlider({ events }: Props) {
   const swiperRef = useRef<SwiperRef>(null);
 
   useEffect(()=> {
+    if(!swiperRef.current) return
+    setIsBeginning(swiperRef.current.swiper.isBeginning);
+    setIsEnd(swiperRef.current.swiper.isEnd)
+
+    const el = document.querySelector(".timeline_slider")
+    if (!el) return
+    gsap.killTweensOf(el)
+    gsap.set(el, { opacity: 1, y: 0 })
+
     gsap.from(".timeline_slider", {
       opacity: 0,
-      delay: 0.6,
+      delay: 0.5,
       y: 20,
       duration: 0.5,
       ease: "power2.out"
     })
 
     return ()=> {
-      gsap.to(".timeline_slider", {
-      opacity: 0,
-      y: 20,
-      duration: 0.6
-    })
+      gsap.killTweensOf(el)
+      swiperRef.current?.swiper.slideTo(0)
     }
   },[events])
 
@@ -49,10 +55,6 @@ export default function TimelineSlider({ events }: Props) {
         spaceBetween={30}
         slidesPerView={3}
         onSlideChange={(swiper) => {
-          setIsBeginning(swiper.isBeginning);
-          setIsEnd(swiper.isEnd);
-        }}
-        onSwiper={(swiper) => {
           setIsBeginning(swiper.isBeginning);
           setIsEnd(swiper.isEnd);
         }}

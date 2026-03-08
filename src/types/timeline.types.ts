@@ -5,7 +5,7 @@ export interface TimelineEvent {
 
 export interface TimelinePeriod {
   id: number
-  group: string
+  group: string | undefined
   start: number
   end: number
   events: TimelineEvent[]

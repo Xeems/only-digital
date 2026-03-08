@@ -78,5 +78,5 @@ export const timelineData: TimelinePeriod[] = [
       { year: 2019, text: "Игра Sekiro: Shadows Die Twice получает премию Game of the Year на The Game Awards." },
       { year: 2020, text: "Релиз The Last of Us Part II вызывает большой резонанс и получает множество наград индустрии." }
     ]
-  }
+  },
 ]
