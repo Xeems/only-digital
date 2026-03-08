@@ -1,8 +1,9 @@
-import { Swiper, SwiperSlide } from "swiper/react"
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react"
 import  ArrowRightIcon  from "../images/chevron-right.svg"
 import  ArrowLeftIcon  from "../images/chevron-left.svg"
 import "swiper/css"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { gsap } from "gsap"
 
 interface Event {
   year: number
@@ -14,29 +15,46 @@ interface Props {
 }
 
 export default function TimelineSlider({ events }: Props) {
-   const [lastSlide, setLastSlide] = useState<number>(0)
-   const swiperRef = useRef<any>(null);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);  
+  const swiperRef = useRef<SwiperRef>(null);
+
+  useEffect(()=> {
+    gsap.from(".timeline_slider", {
+      opacity: 0,
+      delay: 0.6,
+      y: 20,
+      duration: 0.5,
+      ease: "power2.out"
+    })
+
+    return ()=> {
+      gsap.to(".timeline_slider", {
+      opacity: 0,
+      y: 20,
+      duration: 0.6
+    })
+    }
+  },[events])
+
 
   return (
     <div className="timeline_slider">
-      {/* <span>{String().padStart(lastSlide, "0")} / {swiperRef.current?.swiper.slides.length}</span> */}
-      <div className="timline_slider_navigation">
-          <button onClick={() => swiperRef.current?.swiper.slidePrev()}><ArrowLeftIcon/></button>
-          <button onClick={() => swiperRef.current?.swiper.slideNext()}><ArrowRightIcon/></button>
-      </div>
 
       <div className="swiper_container">
-        <button onClick={() => swiperRef.current?.swiper.slidePrev()}><ArrowLeftIcon/></button>
+        <button disabled={isBeginning} onClick={() => swiperRef.current?.swiper.slidePrev()}><ArrowLeftIcon/></button>
         
         <Swiper
         ref={swiperRef}
         spaceBetween={30}
         slidesPerView={3}
         onSlideChange={(swiper) => {
-          let slidesPerView = swiper.params.slidesPerView;
-          if (typeof slidesPerView !== "number") slidesPerView = 1;
-          const lastVisibleIndex = swiper.activeIndex + slidesPerView;
-          setLastSlide(lastVisibleIndex)
+          setIsBeginning(swiper.isBeginning);
+          setIsEnd(swiper.isEnd);
+        }}
+        onSwiper={(swiper) => {
+          setIsBeginning(swiper.isBeginning);
+          setIsEnd(swiper.isEnd);
         }}
         >
           {events.map((e, i) => (
@@ -49,7 +67,7 @@ export default function TimelineSlider({ events }: Props) {
           ))}
         </Swiper>
 
-        <button onClick={() => swiperRef.current?.swiper.slideNext()}><ArrowRightIcon/></button>
+        <button disabled={isEnd} onClick={() => swiperRef.current?.swiper.slideNext()}><ArrowRightIcon/></button>
       </div>
     </div>  
   )
