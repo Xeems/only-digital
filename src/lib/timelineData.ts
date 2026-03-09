@@ -16,7 +16,7 @@ export const timelineData: TimelinePeriod[] = [
   },
   {
     id: 2,
-    group: "Музыка",
+    //group: "Музыка",
     start: 1996,
     end: 2000,
     events: [

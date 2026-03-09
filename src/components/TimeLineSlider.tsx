@@ -50,22 +50,22 @@ export default function TimelineSlider({ events }: Props) {
         <button disabled={isBeginning} onClick={() => swiperRef.current?.swiper.slidePrev()}><ArrowLeftIcon/></button>
         
         <Swiper
-        ref={swiperRef}
-        touchEventsTarget="container"
-        breakpoints={{
-          0: {
-            spaceBetween: 20,   
-          },
-          1440: {
-            spaceBetween: 80,   
-          },
-        }}
-        slidesPerView={'auto'}
-        onSlideChange={(swiper) => {
-          setIsBeginning(swiper.isBeginning);
-          setIsEnd(swiper.isEnd);
-        }}
-        freeMode={true}                   
+          ref={swiperRef}
+          touchEventsTarget="container"
+          breakpoints={{
+            0: {
+              spaceBetween: 20,   
+            },
+            1440: {
+              spaceBetween: 80,   
+            },
+          }}
+          slidesPerView={'auto'}
+          onSlideChange={(swiper) => {
+            setIsBeginning(swiper.isBeginning);
+            setIsEnd(swiper.isEnd);
+          }}
+          freeMode={true}                   
         >
           {events.map((e, i) => (
             <SwiperSlide key={i}>
