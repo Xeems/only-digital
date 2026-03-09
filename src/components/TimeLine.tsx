@@ -26,8 +26,9 @@ export default function Timeline({ data }: Props) {
 
       <hr className="horizontal"/>
       <hr className="vertical"/>
-      <TimeLineYears activePeriod={activePeriod}/>
 
+      <TimeLineYears activePeriod={activePeriod}/>
+      
       <TimelineCircle
         periods={data}
         activeIndex={activeIndex}

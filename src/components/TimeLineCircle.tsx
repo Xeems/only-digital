@@ -43,7 +43,7 @@ export default function TimelineCircle({
   },[activeIndex])
 
   return (
-    <div className="timeline-circle" ref={circleRef}>
+    <div className="timeline_circle" ref={circleRef}>
       {periods.map((p, i) => {
 
         const angle = step * i - 70
@@ -56,7 +56,7 @@ export default function TimelineCircle({
         return (
           <button
               key={p.id}
-              className={`timeline-dot ${i === activeIndex ? "active" : ""}`}
+              className={`timeline_dot ${i === activeIndex ? "active" : ""}`}
               style={{
                   transform: `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(${-rotation}deg) `
               }}

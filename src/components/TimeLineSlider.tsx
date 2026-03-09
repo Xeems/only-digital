@@ -52,12 +52,21 @@ export default function TimelineSlider({ events }: Props) {
         
         <Swiper
         ref={swiperRef}
-        spaceBetween={30}
-        slidesPerView={3}
+        touchEventsTarget="container"
+        breakpoints={{
+          0: {
+            spaceBetween: 20,   
+          },
+          1440: {
+            spaceBetween: 80,   
+          },
+        }}
+        slidesPerView={'auto'}
         onSlideChange={(swiper) => {
           setIsBeginning(swiper.isBeginning);
           setIsEnd(swiper.isEnd);
         }}
+        freeMode={true}                   
         >
           {events.map((e, i) => (
             <SwiperSlide key={i}>
