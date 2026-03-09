@@ -46,7 +46,6 @@ export default function TimelineSlider({ events }: Props) {
 
   return (
     <div className="timeline_slider">
-
       <div className="swiper_container">
         <button disabled={isBeginning} onClick={() => swiperRef.current?.swiper.slidePrev()}><ArrowLeftIcon/></button>
         
